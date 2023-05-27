@@ -56,8 +56,9 @@ function ejecutarAlgoritmoGenetico() {
         }
         poblacion = nuevaPoblacion;
         let maxAptitud = Math.max(...valoresAptitud);
+        
         maxAptitudValores.push(maxAptitud);
-
+        if(maxAptitudValores.length > 5 && maxAptitudValores.slice(maxAptitudValores.length-5, maxAptitudValores.length).every((v, a, array) => v === array[0])) debugger;
         // Verificar si se cumple el criterio de paro
         if (criterioParo === 'generaciones' && generation >= valorCriterioParo) {
             stopConditionMet = true;

@@ -9,7 +9,7 @@ function seleccionarPadreRanking(valoresAptitud) {
     let r = 1 - Math.random() * 0.5; //Elijo solo con la primera mitad
     for (let i = 0; i < indices.length; i++) {
         if (r < (i + 1) / indices.length) {
-            console.log("Seleccionado: " + indices[i])
+            //console.log("Seleccionado: " + indices[i])
             return indices[i];
         }
     }

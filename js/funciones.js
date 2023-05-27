@@ -44,7 +44,7 @@ function cosasQueHagoSoloSiEsPositivo(H, P, aptitud) {
     }
 
     // Verifica si tiene una unica hija
-    aptitud -= H == 1 ? 50 : 0;
+    aptitud -= H == 1 ? 200 : 0;
     //if (H==7 && P==36 && aptitud==160) debugger;
     return aptitud;
 }
