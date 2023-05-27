@@ -33,7 +33,7 @@ function ejecutarAlgoritmoGenetico() {
         poblacion.push([H, P]);
     }
 
-    let generation = 0;
+    generation = 0;
     let stopConditionMet = false;
     while (!stopConditionMet) {
         // Calcular la aptitud de cada cromosoma en la población
@@ -47,18 +47,18 @@ function ejecutarAlgoritmoGenetico() {
             let padre1 = poblacion[seleccionarPadre(valoresAptitud)];
             let padre2 = poblacion[seleccionarPadre(valoresAptitud)];
             let hijo = cruce(padre1, padre2);
-            hijo = mutar(hijo);
+            hijo = mutar(hijo, valoresAptitud);
             nuevaPoblacion.push(hijo);
 
             hijo = cruce(padre2, padre1);
-            hijo = mutar(hijo);
+            hijo = mutar(hijo, valoresAptitud);
             nuevaPoblacion.push(hijo);
         }
         poblacion = nuevaPoblacion;
         let maxAptitud = Math.max(...valoresAptitud);
-        
+
         maxAptitudValores.push(maxAptitud);
-        if(maxAptitudValores.length > 5 && maxAptitudValores.slice(maxAptitudValores.length-5, maxAptitudValores.length).every((v, a, array) => v === array[0])) debugger;
+        if (maxAptitudValores.length > 5 && maxAptitudValores.slice(maxAptitudValores.length - 5, maxAptitudValores.length).every((v, a, array) => v === array[0] && v !== 160)) debugger;
         // Verificar si se cumple el criterio de paro
         if (criterioParo === 'generaciones' && generation >= valorCriterioParo) {
             stopConditionMet = true;

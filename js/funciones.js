@@ -24,7 +24,7 @@ function cosasQueHagoSoloSiEsPositivo(H, P, aptitud) {
 
     // Verifica si todas las hijas recibieron la misma cantidad de perlas
     if (perlas.every((val, i, arr) => val === arr[0])) {
-        aptitud += 100;
+        aptitud += 200;
     } else {
         let perlasEsperadas = P / H;
         let diff = perlas.map(x => Math.abs(x - perlasEsperadas));
@@ -38,13 +38,13 @@ function cosasQueHagoSoloSiEsPositivo(H, P, aptitud) {
     // Verifica si la suma de todas las perlas recibidas es igual a la cantidad total de perlas
     let sumaPerlasRecibidas = perlas.reduce((a, b) => a + b, 0);
     if (sumaPerlasRecibidas === P) {
-        aptitud += 40;
+        aptitud += 150;
     } else {
         aptitud -= Math.abs(sumaPerlasRecibidas - P) * 3;
     }
 
     // Verifica si tiene una unica hija
-    aptitud -= H == 1 ? 200 : 0;
+    aptitud -= H === 1 || H === 0 ? 1000 : 0;
     //if (H==7 && P==36 && aptitud==160) debugger;
     return aptitud;
 }
@@ -55,12 +55,14 @@ function calcularAptitud(cromosoma) {
 
     // Verifica si H y P son números enteros y positivos
     if (Number.isInteger(H) && Number.isInteger(P) && H > 0 && P > 0) {
-        aptitud += 20;
+        aptitud += 100;
         aptitud = cosasQueHagoSoloSiEsPositivo(H, P, aptitud);
-    } else if ((Number.isInteger(H) && H > 0) || (Number.isInteger(P) && P > 0)) {
-        aptitud -= 100;
+    } else if ((Number.isInteger(H) && H <= 0)) {
+        aptitud += (H + 1) * 3;
+    } else if (Number.isInteger(P) && P <= 0) {
+        aptitud += (P + 1) * 3;
     } else {
-        aptitud -= 1000;
+        aptitud -= 100;
     }
     return aptitud;
 }
